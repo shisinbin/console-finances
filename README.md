@@ -1,8 +1,17 @@
-# Unit 3 Challenge: Console Finances
+# Unit 4 Challenge: Console Finances
 
 ## Description
 
-A programming challenge that tests my basic JavaScript knowledge.
+Given a financial dataset describing a company's monthly Profit/Loss, compute a financial analysis and display it in a web browser's console.
+
+The financial analysis includes:
+- The total number of months covered
+- The total Profit/Loss over the entire period
+- The average change in Profit/Loss month-to-month
+- The month that had the greatest increase in profits
+- The month with the greatest decrease in profits
+
+In working on this project, I applied some of the knowledge gained on JavaScript basics, including how to retrieve data from nested arrays using `for` loops, functions, recursion, template literals and rounding numbers.
 
 ## Installation
 
@@ -10,11 +19,15 @@ N/A
 
 ## Usage
 
-This webpage can be accessed and viewed through a web browser at the address below.
+The financial analysis can be accessed by right-clicking the webpage below in a browser, selecting the 'Inspect' option, and then the 'Console' tab.
 
 https://shisinbin.github.io/console-finances/
 
-Screenshots below.
+The financial dataset can be found in the `index.js` file.
+
+A screenshot of the console's output is shown below.
+
+![screenshot of console output](ss.png)
 
 ## Credits
 
