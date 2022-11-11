@@ -86,3 +86,67 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// recursive function to add n numbers in an array
+function sumNum(arr, n) {
+    if (n <= 0) {
+        return 0;
+    } else {
+        return sumNum(arr, n-1) + arr[n-1];
+    }
+}
+
+// work out total number of months
+var numMonths = finances.length;
+
+// initialise counter variables
+var totalPL = 0;
+var changesPL = [];
+
+// do first month separately
+totalPL += finances[0][1];
+
+// initialise greatest increase/decrease data
+var greatestIncrease = [finances[0][0], finances[0][1]];
+var greatestDecrease = [finances[0][0], finances[0][1]];
+
+// loop starting from second month
+for (let i = 1; i < finances.length; i++) {
+
+    // add month-to-month profit/loss change to array
+    changesPL.push(finances[i][1] - finances[i-1][1]);
+
+    // add profit/loss to total
+    totalPL += finances[i][1];
+
+    // check if p/l is bigger than current biggest increase
+    if (finances[i][1] > greatestIncrease[1]) {
+        greatestIncrease = [finances[i][0], finances[i][1]];
+    }
+
+    // check if p/l is smaller than current smallest decrease
+    if (finances[i][1] < greatestDecrease[1]) {
+        greatestDecrease = [finances[i][0], finances[i][1]];
+    }
+}
+
+// work out sum of changes
+var sumOfChanges = sumNum(changesPL, changesPL.length);
+
+// calculate average p/l change, remembering to reduce numMonths by 1
+var averageChange = sumOfChanges/(numMonths-1);
+
+// output results using string literals rather than concatenation
+console.log("Financial Analysis");
+console.log("----------------------------");
+console.log(`Total Months: ${numMonths}`);
+console.log(`Total: \$${totalPL}`)
+console.log(`Average Change: \$${averageChange.toFixed(2)}`)
+console.log(`Greatest Increase in Profits: ${greatestIncrease[0]} (\$${greatestIncrease[1]})`)
+console.log(`Greatest Decrease in Profits: ${greatestDecrease[0]} (\$${greatestDecrease[1]})`)
+
+// console.log(numMonths);
+// console.log(totalPL);
+// console.log(averageChange);
+// console.log(greatestIncrease);
+// console.log(greatestDecrease);
