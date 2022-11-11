@@ -103,12 +103,12 @@ var numMonths = finances.length;
 var totalPL = 0;
 var changesPL = [];
 
+// initialise greatest increase/decrease pointers
+var greatestIncreaseIndex = 0;
+var greatestDecreaseIndex = 0;
+
 // do first month separately
 totalPL += finances[0][1];
-
-// initialise greatest increase/decrease data
-var greatestIncrease = [finances[0][0], finances[0][1]];
-var greatestDecrease = [finances[0][0], finances[0][1]];
 
 // loop starting from second month
 for (let i = 1; i < finances.length; i++) {
@@ -119,14 +119,14 @@ for (let i = 1; i < finances.length; i++) {
     // add profit/loss to total
     totalPL += finances[i][1];
 
-    // check if p/l is bigger than current biggest increase
-    if (finances[i][1] > greatestIncrease[1]) {
-        greatestIncrease = [finances[i][0], finances[i][1]];
+    // check if p/l is bigger than current biggest p/l
+    if (finances[i][1] > finances[greatestIncreaseIndex][1]) {
+        greatestIncreaseIndex = i;
     }
 
-    // check if p/l is smaller than current smallest decrease
-    if (finances[i][1] < greatestDecrease[1]) {
-        greatestDecrease = [finances[i][0], finances[i][1]];
+    // check if p/l is smaller than current smallest p/l
+    if (finances[i][1] < finances[greatestDecreaseIndex][1]) {
+        greatestDecreaseIndex = i;
     }
 }
 
@@ -142,11 +142,11 @@ console.log("----------------------------");
 console.log(`Total Months: ${numMonths}`);
 console.log(`Total: \$${totalPL}`)
 console.log(`Average Change: \$${averageChange.toFixed(2)}`)
-console.log(`Greatest Increase in Profits: ${greatestIncrease[0]} (\$${greatestIncrease[1]})`)
-console.log(`Greatest Decrease in Profits: ${greatestDecrease[0]} (\$${greatestDecrease[1]})`)
+console.log(`Greatest Increase in Profits: ${finances[greatestIncreaseIndex][0]} (\$${finances[greatestIncreaseIndex][1]})`)
+console.log(`Greatest Decrease in Profits: ${finances[greatestDecreaseIndex][0]} (\$${finances[greatestDecreaseIndex][1]})`)
 
 // console.log(numMonths);
 // console.log(totalPL);
 // console.log(averageChange);
-// console.log(greatestIncrease);
-// console.log(greatestDecrease);
+// console.log(finances[greatestIncreaseIndex]);
+// console.log(finances[greatestDecreaseIndex]);
