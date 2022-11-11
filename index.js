@@ -110,7 +110,7 @@ var greatestDecreaseIndex = 0;
 // do first month separately
 totalPL += finances[0][1];
 
-// loop starting from second month
+// loop through finance array starting from second month
 for (let i = 1; i < finances.length; i++) {
 
     // add month-to-month profit/loss change to array
@@ -133,17 +133,20 @@ for (let i = 1; i < finances.length; i++) {
 // work out sum of changes
 var sumOfChanges = sumNum(changesPL, changesPL.length);
 
-// calculate average p/l change, remembering to reduce numMonths by 1
-var averageChange = sumOfChanges/(numMonths-1);
+// calculate average p/l change
+var averageChange = sumOfChanges/(changesPL.length); // or divide by numMonths-1
 
 // output results using string literals rather than concatenation
-console.log("Financial Analysis");
-console.log("----------------------------");
-console.log(`Total Months: ${numMonths}`);
-console.log(`Total: \$${totalPL}`)
-console.log(`Average Change: \$${averageChange.toFixed(2)}`)
-console.log(`Greatest Increase in Profits: ${finances[greatestIncreaseIndex][0]} (\$${finances[greatestIncreaseIndex][1]})`)
-console.log(`Greatest Decrease in Profits: ${finances[greatestDecreaseIndex][0]} (\$${finances[greatestDecreaseIndex][1]})`)
+console.log(`
+    Financial Analysis
+    ----------------------------
+    Total Months: ${numMonths}
+    Total: \$${totalPL}
+    Average Change: \$${averageChange.toFixed(2)}
+    Greatest Increase in Profits: ${finances[greatestIncreaseIndex][0]} (\$${finances[greatestIncreaseIndex][1]})
+    Greatest Decrease in Profits: ${finances[greatestDecreaseIndex][0]} (\$${finances[greatestDecreaseIndex][1]})
+
+`);
 
 // console.log(numMonths);
 // console.log(totalPL);
