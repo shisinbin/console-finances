@@ -6,10 +6,10 @@ Given a financial dataset describing a company's monthly Profit/Loss, compute a 
 
 The financial analysis includes:
 - The total number of months covered
-- The total Profit/Loss over the entire period
-- The average change in Profit/Loss month-to-month
-- The month that had the greatest increase in profits
-- The month with the greatest decrease in profits
+- The net total Profit/Loss over the entire period
+- The average of the monthly changes in Profit/Loss
+- The month that had the greatest increase in profits from the month before, and the amount of this increase
+- The month with the greatest decrease in profits from the month before, and the amount of this decrease
 
 In working on this project, I applied some of the knowledge gained on JavaScript basics, including how to retrieve data from nested arrays using `for` loops, functions, recursion, template literals and rounding numbers.
 

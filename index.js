@@ -87,69 +87,60 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
-// recursive function to add n numbers in an array
-function sumNum(arr, n) {
-    if (n <= 0) {
-        return 0;
-    } else {
-        return sumNum(arr, n-1) + arr[n-1];
-    }
-}
+// initialise profit/loss total to first month in finances
+var totalPL = finances[0][1];
 
-// work out total number of months
-var numMonths = finances.length;
-
-// initialise counter variables
-var totalPL = 0;
+// initialise empty array to hold change in profit/loss between months
 var changesPL = [];
+
+/*
+loop through finances starting from second month,
+adding profit/loss from each month to totalPL and
+pushing the monthly change in profit/loss into changesPL
+*/
+for (let i = 1; i < finances.length; i++) {
+    totalPL += finances[i][1];
+    changesPL.push(finances[i][1] - finances[i-1][1]);
+}
 
 // initialise greatest increase/decrease pointers
 var greatestIncreaseIndex = 0;
 var greatestDecreaseIndex = 0;
 
-// do first month separately
-totalPL += finances[0][1];
+// initialise sum of changes to first change in changesPL
+var sumOfChanges = changesPL[0];
 
-// loop through finance array starting from second month
-for (let i = 1; i < finances.length; i++) {
+/*
+loop through changesPL starting from second change,
+adding each change to sumofChanges and updating the
+index position of the biggest and smallest change
+*/
+for (let i = 1; i < changesPL.length; i++) {
 
-    // add month-to-month profit/loss change to array
-    changesPL.push(finances[i][1] - finances[i-1][1]);
+    sumOfChanges += changesPL[i];
 
-    // add profit/loss to total
-    totalPL += finances[i][1];
-
-    // check if p/l is bigger than current biggest p/l
-    if (finances[i][1] > finances[greatestIncreaseIndex][1]) {
+    if (changesPL[i] > changesPL[greatestIncreaseIndex]) {
         greatestIncreaseIndex = i;
     }
 
-    // check if p/l is smaller than current smallest p/l
-    if (finances[i][1] < finances[greatestDecreaseIndex][1]) {
+    if (changesPL[i] < changesPL[greatestDecreaseIndex]) {
         greatestDecreaseIndex = i;
     }
 }
 
-// work out sum of changes
-var sumOfChanges = sumNum(changesPL, changesPL.length);
-
-// calculate average p/l change
-var averageChange = sumOfChanges/(changesPL.length); // or divide by numMonths-1
-
-// output results using string literals rather than concatenation
+/*
+output results using template literals.
+toFixed() is used for rounding average change to 2dp.
+pointer variables used accordingly for both changesPL and finances
+(latter has one more initial month, hence 1 added to index pointers).
+*/
 console.log(`
     Financial Analysis
     ----------------------------
-    Total Months: ${numMonths}
+    Total Months: ${finances.length}
     Total: \$${totalPL}
-    Average Change: \$${averageChange.toFixed(2)}
-    Greatest Increase in Profits: ${finances[greatestIncreaseIndex][0]} (\$${finances[greatestIncreaseIndex][1]})
-    Greatest Decrease in Profits: ${finances[greatestDecreaseIndex][0]} (\$${finances[greatestDecreaseIndex][1]})
+    Average Change: \$${(sumOfChanges/(changesPL.length)).toFixed(2)}
+    Greatest Increase in Profits: ${finances[greatestIncreaseIndex+1][0]} (\$${changesPL[greatestIncreaseIndex]})
+    Greatest Decrease in Profits: ${finances[greatestDecreaseIndex+1][0]} (\$${changesPL[greatestDecreaseIndex]})
 
 `);
-
-// console.log(numMonths);
-// console.log(totalPL);
-// console.log(averageChange);
-// console.log(finances[greatestIncreaseIndex]);
-// console.log(finances[greatestDecreaseIndex]);
