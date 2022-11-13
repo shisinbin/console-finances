@@ -11,7 +11,7 @@ The financial analysis includes:
 - The month that had the greatest increase in profits from the month before, and the amount of this increase
 - The month with the greatest decrease in profits from the month before, and the amount of this decrease
 
-In working on this project, I applied some of the knowledge gained on JavaScript basics, including how to retrieve data from nested arrays using `for` loops, functions, recursion, template literals and rounding numbers.
+In working on this project, I applied some of the knowledge gained on JavaScript basics, including how to retrieve data from nested arrays using `for` loops, template literals and rounding numbers.
 
 ## Installation
 
