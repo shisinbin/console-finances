@@ -8,8 +8,8 @@ The financial analysis includes:
 - The total number of months covered
 - The net total Profit/Loss over the entire period
 - The average of the monthly changes in Profit/Loss
-- The month that had the greatest increase in profits from the month before, and the amount of this increase
-- The month with the greatest decrease in profits from the month before, and the amount of this decrease
+- The month that had the greatest increase in profits from the month before (and the amount of this increase)
+- The month with the greatest decrease in profits from the month before (and the amount of this decrease)
 
 In working on this project, I applied some of the knowledge gained on JavaScript basics, including how to retrieve data from nested arrays using `for` loops, template literals and rounding numbers.
 
