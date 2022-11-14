@@ -2,7 +2,7 @@
 
 ## Description
 
-Given a financial dataset describing a company's monthly Profit/Loss, a financial analysis is computed and displayed in a web browser's console.
+Given a financial dataset describing a company's monthly Profit/Loss amount, a financial analysis is computed and displayed in a web browser's console.
 
 The financial analysis includes:
 - The total number of months covered
