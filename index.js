@@ -96,19 +96,19 @@ var changesPL = [];
 /*
 loop through finances starting from second month,
 adding profit/loss from each month to totalPL and
-pushing the monthly change in profit/loss into changesPL
+pushing both the month and the change into changesPL
 */
 for (let i = 1; i < finances.length; i++) {
     totalPL += finances[i][1];
-    changesPL.push(finances[i][1] - finances[i - 1][1]);
+    changesPL.push([finances[i][0], finances[i][1] - finances[i - 1][1]]);
 }
 
 // initialise greatest increase/decrease pointers
 var greatestIncreaseIndex = 0;
 var greatestDecreaseIndex = 0;
 
-// initialise sum of changes to first change in changesPL
-var sumOfChanges = changesPL[0];
+// initialise sum of changes to first profit/loss change in changesPL
+var sumOfChanges = changesPL[0][1];
 
 /*
 loop through changesPL starting from second change,
@@ -117,30 +117,25 @@ index position of the biggest and smallest change
 */
 for (let i = 1; i < changesPL.length; i++) {
 
-    sumOfChanges += changesPL[i];
+    sumOfChanges += changesPL[i][1];
 
-    if (changesPL[i] > changesPL[greatestIncreaseIndex]) {
+    if (changesPL[i][1] > changesPL[greatestIncreaseIndex][1]) {
         greatestIncreaseIndex = i;
     }
 
-    if (changesPL[i] < changesPL[greatestDecreaseIndex]) {
+    if (changesPL[i][1] < changesPL[greatestDecreaseIndex][1]) {
         greatestDecreaseIndex = i;
     }
 }
 
-/*
-output results using template literals.
-toFixed() is used for rounding average change to 2dp.
-pointer variables used accordingly for both changesPL and finances
-(latter has one more initial month, hence 1 added to index pointers).
-*/
+// output results using template literals
 console.log(`
     Financial Analysis
     ----------------------------
     Total Months: ${finances.length}
     Total: \$${totalPL}
     Average Change: \$${(sumOfChanges / (changesPL.length)).toFixed(2)}
-    Greatest Increase in Profits: ${finances[greatestIncreaseIndex + 1][0]} (\$${changesPL[greatestIncreaseIndex]})
-    Greatest Decrease in Profits: ${finances[greatestDecreaseIndex + 1][0]} (\$${changesPL[greatestDecreaseIndex]})
+    Greatest Increase in Profits: ${changesPL[greatestIncreaseIndex][0]} (\$${changesPL[greatestIncreaseIndex][1]})
+    Greatest Decrease in Profits: ${changesPL[greatestDecreaseIndex][0]} (\$${changesPL[greatestDecreaseIndex][1]})
 
 `);
